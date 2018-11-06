@@ -21,7 +21,7 @@ function activate(context) {
     const commands = vscode.commands;
 
     const 状态框 = window.createStatusBarItem(StatusBarAlignment.Right, 100);
-    状态框.command = 'extension.selectedText';
+    状态框.command = 'extension.翻译选中文本';
     context.subscriptions.push(状态框);
 
     context.subscriptions.push(window.onDidChangeActiveTextEditor(e => 更新状态栏(状态框)));
@@ -30,7 +30,7 @@ function activate(context) {
     context.subscriptions.push(workspace.onDidOpenTextDocument(e => 更新状态栏(状态框)));
     context.subscriptions.push(workspace.onDidCloseTextDocument(e => 更新状态栏(状态框)));
 
-    context.subscriptions.push(commands.registerCommand('extension.selectedText', () => {
+    context.subscriptions.push(commands.registerCommand('extension.翻译选中文本', () => {
         // TODO: 避免重复查询(状态框查询一次即可?)
         let 文本 = 取选中文本();
         if (文本) {

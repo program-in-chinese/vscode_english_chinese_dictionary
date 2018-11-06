@@ -17,7 +17,7 @@
     "contributes": {
         "commands": [
             {
-                "command": "extension.selectedText",
+                "command": "extension.翻译选中文本",
                 "title": "英汉词典"
             }
         ]

@@ -12,7 +12,6 @@ var 词形类型 = Object.freeze({
 
 exports.取释义 = function(词典数据, 选中文本) {
   var 英文 = 选中文本.trim();
-  console.log(词典数据[英文]);
   return 词典数据[英文];
 }
 
