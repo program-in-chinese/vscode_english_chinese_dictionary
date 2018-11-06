@@ -3,7 +3,7 @@
     "displayName": "离线英汉词典",
     "description": "77万词条的本地英汉词典",
     "version": "0.0.1",
-    "publisher": "nobody",
+    "publisher": "CodeInChinese",
     "engines": {
         "vscode": "^1.28.0"
     },
