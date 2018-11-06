@@ -1,6 +1,6 @@
 # EnglishChineseDictionary README
 
-This is the README for your extension "EnglishChineseDictionary". After writing up a brief description, we recommend including the following sections.
+在状态栏中显示选中词或短语的释义
 
 ## Features
 
@@ -25,15 +25,12 @@ For example:
 This extension contributes the following settings:
 
 * `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+暂无
 
 ## Release Notes
-
-Users appreciate release notes as you update your extension.
 
 ### 1.0.0
 
