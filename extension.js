@@ -31,33 +31,25 @@ function activate(context) {
     context.subscriptions.push(workspace.onDidCloseTextDocument(e => 更新状态栏(状态框)));
 
     context.subscriptions.push(commands.registerCommand('extension.selectedText', () => {
+        // TODO: 避免重复查询(状态框查询一次即可?)
         let 文本 = 取选中文本();
-        let 显示 = "";
         if (文本) {
-            显示 = 查词.取释义(词典数据, 文本);
-            if (词形变化数据[文本]) {
-                显示 += "    " + JSON.stringify(查词.提取词形(词形变化数据[文本]))
-            }
+            window.showInformationMessage(显示词条(查询词条(文本), true));
         }
-        window.showInformationMessage(显示);
     }));
 
     更新状态栏(状态框);
 }
 
-// TODO: 改正: 如选中'constructor', 显示'function()...'
 function 更新状态栏(状态框) {
     let 文本 = 取选中文本();
-    console.log(文本);
     if (文本) {
-        状态框.text = '$(megaphone) ' + 查词.取释义(词典数据, 文本); // TODO: 显示简要释义
+        状态框.text = '$(megaphone) ' + 显示词条(查询词条(文本));
     }
 
     if (文本) {
-        console.log("显示");
         状态框.show();
     } else {
-        console.log("隐藏");
         状态框.hide();
     }
 }
@@ -66,6 +58,37 @@ function 取选中文本() {
     const 当前编辑器 = vscode.window.activeTextEditor;
     const 选中部分 = 当前编辑器.selection;
     return 当前编辑器.document.getText(选中部分);
+}
+
+function 查询词条(英文) {
+    var 中文释义 = 查词.取释义(词典数据, 英文);
+    if (!中文释义) {
+        英文 = 英文.toLowerCase();
+        中文释义 = 查词.取释义(词典数据, 英文);
+    }
+    if (!中文释义) {
+        英文 = 英文.toUpperCase();
+        中文释义 = 查词.取释义(词典数据, 英文);
+    }
+    return { "释义": 中文释义, "词形": 查词.提取词形(词形变化数据[英文]) };
+}
+
+function 显示词条(查词结果, 包含词形 = false) {
+    var 释义 = 查词结果.释义;
+    var 词形 = 查词结果.词形;
+    var 显示 = "";
+    if (释义) {
+        显示 = 释义.split('\\n').join(" ");
+    }
+    if (包含词形 && 词形.length > 0) {
+        var 词形显示 = "";
+        for (var 某词形 of 词形) {
+            词形显示 += 某词形.类型 + ": " + 某词形.变化 + "; ";
+        }
+        显示 += "  " + 词形显示;
+    }
+    console.log(显示);
+    return 显示;
 }
 
 exports.activate = activate;
