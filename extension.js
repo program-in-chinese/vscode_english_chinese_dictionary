@@ -5,23 +5,49 @@ const vscode = require('vscode');
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {
+    const window = vscode.window;
+    const StatusBarAlignment = vscode.StatusBarAlignment;
+    const workspace = vscode.workspace;
+    const commands = vscode.commands;
 
-    // Use the console to output diagnostic information (console.log) and errors (console.error)
-    // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "EnglishChineseDictionary" is now active!');
+    const status = window.createStatusBarItem(StatusBarAlignment.Right, 100);
+    status.command = 'extension.selectedText';
+    context.subscriptions.push(status);
 
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with  registerCommand
-    // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('extension.sayHello', function () {
-        // The code you place here will be executed every time your command is executed
+    context.subscriptions.push(window.onDidChangeActiveTextEditor(e => updateStatus(status)));
+    context.subscriptions.push(window.onDidChangeTextEditorSelection(e => updateStatus(status)));
+    context.subscriptions.push(window.onDidChangeTextEditorViewColumn(e => updateStatus(status)));
+    context.subscriptions.push(workspace.onDidOpenTextDocument(e => updateStatus(status)));
+    context.subscriptions.push(workspace.onDidCloseTextDocument(e => updateStatus(status)));
 
-        // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World!');
-    });
+    context.subscriptions.push(commands.registerCommand('extension.selectedText', () => {
+        window.showInformationMessage(getSelectedText());
+    }));
 
-    context.subscriptions.push(disposable);
+    updateStatus(status);
 }
+
+function updateStatus(status) {
+    let text = getSelectedText();
+    if (text) {
+        status.text = '$(megaphone) ' + text;
+    }
+
+    if (text) {
+        status.show();
+    } else {
+        status.hide();
+    }
+}
+
+function getSelectedText() {
+    const editor = vscode.window.activeTextEditor
+    const selection = editor.selection
+    const text = editor.document.getText(selection)
+
+    return text;
+}
+
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
