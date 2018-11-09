@@ -1,6 +1,6 @@
 # 英汉词典使用说明
 
-在状态栏中显示选中词或短语的释义, 支持驼峰和下划线命名查询
+在状态栏中显示选中词的释义, 支持驼峰和下划线命名查询
 
 ## 功能
 
@@ -36,10 +36,6 @@
 
 中文编程[知乎专栏](https://zhuanlan.zhihu.com/c_140193266)文章: [Visual Studio Code插件-英汉词典初版发布](https://zhuanlan.zhihu.com/p/48791726)
 
-## 扩展设置
-
-暂无
-
 ## 已知问题
 
-暂无
+[暂不支持带空格的短语查询](https://github.com/program-in-chinese/vscode_english_chinese_dictionary/issues/4)
