@@ -28,7 +28,7 @@
 
 ### 0.0.3
 
-中文编程[知乎专栏](https://zhuanlan.zhihu.com/c_140193266)文章: [Visual Studio Code插件-英汉词典v0.0.3-支持驼峰和下划线命名]()
+中文编程[知乎专栏](https://zhuanlan.zhihu.com/c_140193266)文章: [VS Code英汉词典插件v0.0.3-驼峰下划线命名](https://zhuanlan.zhihu.com/p/49133480)
 - 对驼峰和下划线命名中所有单词进行直译
 - 查词无结果时提示
 
