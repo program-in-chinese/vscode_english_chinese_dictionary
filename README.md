@@ -1,8 +1,8 @@
-# EnglishChineseDictionary README
+# 英汉词典使用说明
 
 在状态栏中显示选中词或短语的释义, 支持驼峰和下划线命名查询
 
-## Features
+## 功能
 
 点击状态栏显示更全信息. 当选中单词时, 详细信息包括词形变化; 当选中驼峰或下划线命名时, 详细信息包括所有单词的释义, 但不包括各词的词形变化.
 
@@ -24,7 +24,7 @@
 
 ![查无结果](截图/2018-11-09_vscode英汉词典_演示_args_无结果.png)
 
-## Release Notes
+## 版本说明
 
 ### 0.0.3
 
@@ -36,14 +36,10 @@
 
 中文编程[知乎专栏](https://zhuanlan.zhihu.com/c_140193266)文章: [Visual Studio Code插件-英汉词典初版发布](https://zhuanlan.zhihu.com/p/48791726)
 
-## Requirements
+## 扩展设置
 
 暂无
 
-## Extension Settings
-
-暂无
-
-## Known Issues
+## 已知问题
 
 暂无
