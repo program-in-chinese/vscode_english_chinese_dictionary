@@ -2,7 +2,7 @@
     "name": "EnglishChineseDictionary",
     "displayName": "英汉词典",
     "description": "包含77万词条的本地英汉词典, 支持驼峰命名",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "publisher": "CodeInChinese",
     "engines": {
         "vscode": "^1.28.0"

@@ -1,6 +1,6 @@
-const 释义处理 = require('./源码翻译/释义处理')
-const 词典常量 = require('./源码翻译/词典常量')
-const 常用词典 = require('./源码翻译/常用词典')
+const 释义处理 = require('./translation/process')
+const 词典常量 = require('./translation/consts')
+const 常用词典 = require('./translation/common')
 const 词典 = require('./加载词典')
 
 var 词形类型 = Object.freeze({

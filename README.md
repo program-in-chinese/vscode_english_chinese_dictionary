@@ -26,9 +26,9 @@
 
 ## 版本说明
 
-### 0.0.3
+### 0.0.4
 
-中文编程[知乎专栏](https://zhuanlan.zhihu.com/c_140193266)文章: [VS Code英汉词典插件v0.0.3-驼峰下划线命名](https://zhuanlan.zhihu.com/p/49133480)
+中文编程[知乎专栏](https://zhuanlan.zhihu.com/c_140193266)文章: [VS Code英汉词典插件v0.0.4-驼峰下划线命名](https://zhuanlan.zhihu.com/p/49133480)
 - 对驼峰和下划线命名中所有单词进行直译
 - 查词无结果时提示
 
