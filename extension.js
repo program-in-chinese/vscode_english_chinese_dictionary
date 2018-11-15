@@ -41,8 +41,10 @@ function 更新状态栏(状态框) {
 
 function 取选中文本() {
     const 当前编辑器 = vscode.window.activeTextEditor;
-    const 选中部分 = 当前编辑器.selection;
-    return 当前编辑器.document.getText(选中部分);
+    if (当前编辑器) {
+        const 选中部分 = 当前编辑器.selection;
+        return 当前编辑器.document.getText(选中部分);
+    }
 }
 
 function 查询词条(英文) {
