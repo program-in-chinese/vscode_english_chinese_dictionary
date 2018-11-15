@@ -34,6 +34,11 @@ exports.取释义 = function (选中文本) {
     }*/
     if (处理后词 != 单词.toUpperCase()) {
       处理后词 = 单词.toLowerCase();
+    } else {
+      // 应付全大写词, 多见于常量, 如SHIPMENT
+      if (!词典.词典数据[处理后词]) {
+        处理后词 = 单词.toLowerCase();
+      }
     }
     if (处理后词 in 常用词典.不翻译) {
       所有词条.push({"词": 处理后词, "释义": 处理后词});
