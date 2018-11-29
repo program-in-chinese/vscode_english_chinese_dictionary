@@ -1,4 +1,4 @@
-exports.数据 = {
+export var 数据 = {
 "monocrystalline silicon":"[计] 单晶硅\\n[化] 单晶硅",
 "Monocs":"代森二甲胺",
 "monocular":"a. 单眼的, 单眼用的",

@@ -28,7 +28,7 @@ function 分词性(中文释义, 所有词性) {
   return 词性到释义;
 }
 
-exports.首选 = function(中文释义, 所有词性) {
+export function 首选(中文释义, 所有词性) {
   if (!中文释义) {
     return;
   }
@@ -48,11 +48,11 @@ exports.首选 = function(中文释义, 所有词性) {
   return 首选词义;
 }
 
-exports.取复数原型 = function(词, 词形) {
+export function 取复数原型(词, 词形) {
   if (词形) {
     var 原词 = 词;
     var 为复数形式 = false;
-    for (某词形 of 词形) {
+    for (var 某词形 of 词形) {
       if (某词形.类型 == "原型变换形式" && 某词形.变化.includes("名词复数形式")) {
         为复数形式 = true;
       }
@@ -72,7 +72,7 @@ exports.取复数原型 = function(词, 词形) {
 
 // 假设每个字段除了词, 其他都是非英文字符.
 // 仅翻译无空格的片段
-exports.取字段中所有词 = function(字段文本) {
+export function 取字段中所有词(字段文本) {
   // 删去所有前后空格后再提取单词
   var 删除前后空格 = 字段文本.trim();
   // 确认无空格
@@ -82,7 +82,7 @@ exports.取字段中所有词 = function(字段文本) {
   var 单词 = 删除前后空格.match(/[a-zA-Z]+/g);
   if (单词) {
     var 分词 = [];
-    for (某单词 of 单词) {
+    for (var 某单词 of 单词) {
       分词 = 分词.concat(拆分骆驼命名(某单词))
     }
     return 分词;

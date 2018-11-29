@@ -1,4 +1,4 @@
-exports.词性 = [
+export var 词性 = [
   "[j]",
   "[pl.]",
   "[专利]",

@@ -1,7 +1,7 @@
-const 释义处理 = require('./translation/process')
-const 词典常量 = require('./translation/consts')
-const 常用词典 = require('./translation/common')
-const 词典 = require('./加载词典')
+import * as 释义处理 from './translation/process'
+import * as 词典常量 from './translation/consts'
+import * as 常用词典 from './translation/common'
+import * as 词典 from './加载词典'
 
 var 词形类型 = Object.freeze({
   "p": "过去式", // past tense
@@ -17,10 +17,10 @@ var 词形类型 = Object.freeze({
 
 // {"原字段": 原字段, "释义": 翻译, "各词": [{"词": 英文, "释义": 单词释义, "词形": [所有变形]}]};
 // TODO: 测试!!!!!!
-exports.取释义 = function (选中文本) {
+export function 取释义(选中文本) {
   var 所有词 = 释义处理.取字段中所有词(选中文本);
   var 所有词条 = [];
-  for (单词 of 所有词) {
+  for (var 单词 of 所有词) {
     var 处理后词 = 单词;
 
     // TODO: 避免两次处理大小写

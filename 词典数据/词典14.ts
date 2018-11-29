@@ -1,4 +1,4 @@
-exports.数据 = {
+export var 数据 = {
 "Thomas Hardy":"托马斯·哈代（英国小说家）",
 "Thomas Hart Benton":"[网络] 托马斯哈特本顿；托马斯·哈特；汤玛斯·哈特·班顿",
 "Thomas Hastings":"[网络] 托马斯·黑斯廷斯",

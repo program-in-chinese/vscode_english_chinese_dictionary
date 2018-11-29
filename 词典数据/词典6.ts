@@ -1,4 +1,4 @@
-exports.数据 = {
+export var 数据 = {
 "gonorrheal salpingitis":"[医] 淋病性输卵管炎",
 "gonorrheal synovitis":"[医] 淋病性滑膜炎",
 "gonorrheal urethritis":"[医] 淋病性尿道炎",

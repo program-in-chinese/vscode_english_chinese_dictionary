@@ -32,7 +32,7 @@ var 常用命名 = {
   "remove": "删除"
 };
 
-exports.不翻译 = {
+export var 不翻译 = {
   "to": false,
   "of": false,
   "bean": false

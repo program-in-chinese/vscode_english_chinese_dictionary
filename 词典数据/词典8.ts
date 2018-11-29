@@ -1,4 +1,4 @@
-exports.数据 = {
+export var 数据 = {
 "limited page allocation":"[计] 有限页面分配",
 "limited participation":"[法] 有限参予",
 "limited partner":"[经] 有限责任合伙人",
