@@ -1,5 +1,5 @@
 const vscode = require('vscode');
-const 查词 = require('./查词')
+import * as 查词 from './查词';
 
 function activate(context) {
     const window = vscode.window;
@@ -74,7 +74,7 @@ function 显示字段信息(查字段结果) {
         return 取单词条信息(查字段结果.各词[0], true);
     } else {
         var 翻译 = "";
-        for (单词结果 of 查字段结果.各词) {
+        for (var 单词结果 of 查字段结果.各词) {
             翻译 += 取单词条信息(单词结果, true, false);
         }
     }

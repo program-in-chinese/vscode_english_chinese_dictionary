@@ -1,4 +1,4 @@
-exports.数据 = {
+export var 数据 = {
 "A-bomb":"s:a-bombs",
 "A-bombs":"0:a-bomb/1:s",
 "a-come":"i:a-coming",

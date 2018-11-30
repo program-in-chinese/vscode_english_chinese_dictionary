@@ -1,4 +1,4 @@
-exports.数据 = {
+export var 数据 = {
 "digital output":"[电] 数位输出",
 "digital pattern":"[计] 数字模式",
 "digital pelvimetry":"[医] 骨盆指量法",

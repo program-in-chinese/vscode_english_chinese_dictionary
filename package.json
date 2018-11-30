@@ -2,10 +2,10 @@
     "name": "EnglishChineseDictionary",
     "displayName": "英汉词典",
     "description": "包含77万词条的本地英汉词典, 支持驼峰和下划线命名",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "publisher": "CodeInChinese",
     "engines": {
-        "vscode": "^1.28.0"
+        "vscode": "^1.29.0"
     },
     "categories": [
         "Other"
@@ -13,7 +13,7 @@
     "activationEvents": [
         "*"
     ],
-    "main": "./extension",
+    "main": "./out/src/extension",
     "contributes": {
         "commands": [
             {
@@ -23,6 +23,8 @@
         ]
     },
     "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "node ./node_modules/vscode/bin/test"
     },

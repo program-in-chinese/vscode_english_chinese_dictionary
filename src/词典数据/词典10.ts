@@ -1,4 +1,4 @@
-exports.数据 = {
+export var 数据 = {
 "outraced":"超过…速度, 赶过( outrace的过去式和过去分词 )",
 "outraces":"超过…速度, 赶过( outrace的第三人称单数 )",
 "outracing":"超过…速度, 赶过( outrace的现在分词 )",
