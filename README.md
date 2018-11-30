@@ -28,15 +28,20 @@
 
 ## 版本说明
 
+### 0.0.6
+
+中文编程[知乎专栏](https://zhuanlan.zhihu.com/codeInChinese)文章: [VS Code英汉词典插件v0.0.6-改为TS实现, 加测试](https://zhuanlan.zhihu.com/p/51243255)
+- 如命名中包含复数词汇, 取原型的释义. 如useColors, colors意为"国旗", 现改为取'color'释义.
+
 ### 0.0.4
 
-中文编程[知乎专栏](https://zhuanlan.zhihu.com/c_140193266)文章: [VS Code英汉词典插件v0.0.4-驼峰下划线命名](https://zhuanlan.zhihu.com/p/49133480)
+中文编程[知乎专栏](https://zhuanlan.zhihu.com/codeInChinese)文章: [VS Code英汉词典插件v0.0.4-驼峰下划线命名](https://zhuanlan.zhihu.com/p/49133480)
 - 对驼峰和下划线命名中所有单词进行直译
 - 查词无结果时提示
 
 ### 0.0.1
 
-中文编程[知乎专栏](https://zhuanlan.zhihu.com/c_140193266)文章: [Visual Studio Code插件-英汉词典初版发布](https://zhuanlan.zhihu.com/p/48791726)
+中文编程[知乎专栏](https://zhuanlan.zhihu.com/codeInChinese)文章: [Visual Studio Code插件-英汉词典初版发布](https://zhuanlan.zhihu.com/p/48791726)
 
 ## 已知问题
 
