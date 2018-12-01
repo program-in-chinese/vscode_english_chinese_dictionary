@@ -72,5 +72,13 @@ suite("查词测试", () => {
     assert.equal("使用颜色", 查词.取释义("useColors").释义);
 
     assert.equal("fs路径", 查词.取释义("fsPath").释义);
+
+    // 取现在分词原型
+    检查释义("gettingStarted", "取得指令出发");
+
   });
+
+  function 检查释义(原词语, 释义) {
+    assert.equal(释义, 查词.取释义(原词语).释义);
+  }
 });
