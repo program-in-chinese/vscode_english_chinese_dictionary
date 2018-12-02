@@ -48,12 +48,12 @@ export function 首选(中文释义, 所有词性) {
   return 首选词义;
 }
 
-export function 取复数原型(词, 词形) {
+export function 取原型(词, 词形) {
   if (词形) {
     var 原词 = 词;
     var 为复数形式 = false;
     for (var 某词形 of 词形) {
-      if (某词形.类型 == "原型变换形式" && 某词形.变化.includes("名词复数形式")) {
+      if (某词形.类型 == "原型变换形式" && (某词形.变化.includes("名词复数形式") || 某词形.变化.includes("现在分词"))) {
         为复数形式 = true;
       }
       if (某词形.类型 == "原型") {
