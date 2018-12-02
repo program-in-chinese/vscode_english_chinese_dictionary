@@ -3,7 +3,7 @@ import * as 词典常量 from './translation/consts'
 import * as 常用词典 from './translation/common'
 import * as 词典 from './加载词典'
 
-var 词形类型 = Object.freeze({
+const 词形类型 = Object.freeze({
   "p": "过去式", // past tense
   "d": "过去分词",
   "i": "现在分词", // -ing
@@ -17,13 +17,13 @@ var 词形类型 = Object.freeze({
 
 // {"原字段": 原字段, "释义": 翻译, "各词": [{"词": 英文, "释义": 单词释义, "词形": [所有变形]}]};
 export function 取释义(选中文本) {
-  var 所有词 = 释义处理.取字段中所有词(选中文本);
-  var 所有词条 = [];
-  for (var 单词 of 所有词) {
-    var 处理后词 = 单词;
+  let 所有词 = 释义处理.取字段中所有词(选中文本);
+  let 所有词条 = [];
+  for (let 单词 of 所有词) {
+    let 处理后词 = 单词;
 
     // TODO: 避免两次处理大小写
-    /*var 中文释义 = 查词.取释义(词典数据, 英文).释义;
+    /*let 中文释义 = 查词.取释义(词典数据, 英文).释义;
     if (!中文释义) {
         英文 = 英文.toLowerCase();
         中文释义 = 查词.取释义(词典数据, 英文).释义;
@@ -49,20 +49,20 @@ export function 取释义(选中文本) {
     if (所有词.length > 1) {
       处理后词 = 释义处理.取原型(处理后词, 提取词形(词典.词形变化数据[处理后词]));
     }
-    var 所有词形 = 提取词形(词典.词形变化数据[处理后词]);
+    let 所有词形 = 提取词形(词典.词形变化数据[处理后词]);
     所有词条.push({"词": 处理后词, "释义": 词典.词典数据[处理后词], "词形": 所有词形});
   }
-  var 释义 = "";
+  let 释义 = "";
   if (所有词条.length > 1) {
 
     // 对下划线分隔的命名, 仍保留下划线
     // TODO: 应付下划线前缀/后缀
-    var 下划线个数 = (选中文本.match(/_/g) || []).length
-    var 分隔 = (下划线个数 > 0 && 下划线个数 == 所有词条.length - 1)
+    let 下划线个数 = (选中文本.match(/_/g) || []).length
+    let 分隔 = (下划线个数 > 0 && 下划线个数 == 所有词条.length - 1)
       ? "_"
       : "";
-    var 所有释义 = [];
-    for (var i = 0; i < 所有词条.length; i++) {
+    let 所有释义 = [];
+    for (let i = 0; i < 所有词条.length; i++) {
       let 词条 = 所有词条[i];
       所有释义.push(词条.释义 ? 释义处理.首选(词条.释义, 词典常量.词性) : 所有词[i]);
     }
@@ -76,18 +76,18 @@ export function 取释义(选中文本) {
 
 // 词形部分数据格式描述: https://github.com/skywind3000/ECDICT#%E8%AF%8D%E5%BD%A2%E5%8F%98%E5%8C%96
 function 提取词形(原字符串) {
-  var 变化 = [];
+  let 变化 = [];
   if (!原字符串) {
     return 变化;
   }
-  var 词形字段 = 原字符串.split("/");
-  for (var 某字段 of 词形字段) {
-    var 分段 = 某字段.split(":");
+  let 词形字段 = 原字符串.split("/");
+  for (let 某字段 of 词形字段) {
+    let 分段 = 某字段.split(":");
 
-    var 类型 = 词形类型[分段[0]];
-    var 原型变化形式 = [];
+    let 类型 = 词形类型[分段[0]];
+    let 原型变化形式 = [];
     if (类型 == "原型变换形式") {
-      for (var 变化形式 of 分段[1]) {
+      for (let 变化形式 of 分段[1]) {
         原型变化形式.push(词形类型[变化形式]);
       }
     }

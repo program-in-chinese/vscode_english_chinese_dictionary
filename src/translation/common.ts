@@ -38,7 +38,7 @@ export const 不翻译 = {
   "bean": false
 };
 
-var API词典 = {
+const API词典 = {
   'print': '打印',
   'append': '添加',
   'sort': '排序',
