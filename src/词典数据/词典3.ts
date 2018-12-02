@@ -1,4 +1,4 @@
-export var 数据 = {
+export const 数据 = {
 "commission of authority":"[经] 授权书",
 "commission of conciliation":"[经] 调解委员会",
 "commission of enquiry or inquiry":"[法] 调查团, 调查委员会",

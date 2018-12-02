@@ -1,4 +1,4 @@
-export var 数据 = {
+export const 数据 = {
 "robbing":"n. 回采矿柱",
 "Robbins":"罗宾斯(①姓氏 ②Frederick Chapman, 1916-, 美国医学家, 曾获1954年诺贝尔生理学-医学奖)",
 "robbinsdale":" [地名] [美国] 罗宾斯代尔",

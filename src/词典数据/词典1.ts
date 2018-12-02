@@ -1,4 +1,4 @@
-export var 数据 = {
+export const 数据 = {
 "asan":"n. (Asan)人名；(俄、塞、罗)阿桑",
 "asana":"n. 瑜珈的任何一种姿势",
 "asanas":"n. 瑜珈的任何一种姿势\\nn. (Asana)人名；(日)朝夷名(姓)",

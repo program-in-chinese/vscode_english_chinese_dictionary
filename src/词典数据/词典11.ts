@@ -1,4 +1,4 @@
-export var 数据 = {
+export const 数据 = {
 "prefigurations":"(prefiguration 的复数) n. 预示, 预兆, 预想",
 "prefigurative":"a. 预示的",
 "prefigure":"vt. 预示, 预见, 预想",

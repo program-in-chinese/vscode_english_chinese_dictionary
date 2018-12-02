@@ -1,4 +1,4 @@
-export var 数据 = {
+export const 数据 = {
 "bronchial":"a. 支气管, 细支气管\\n[医] 支气管的",
 "bronchial accentuated":"[医] 支气管杂音",
 "bronchial allergy":"[医] 支气管变应性, 气喘",

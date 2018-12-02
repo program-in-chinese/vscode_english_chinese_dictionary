@@ -1,4 +1,4 @@
-var 常用命名 = {
+const 常用命名 = {
   'text': "文本",
   "get": "获取",
   "util": "功用",
@@ -32,7 +32,7 @@ var 常用命名 = {
   "remove": "删除"
 };
 
-export var 不翻译 = {
+export const 不翻译 = {
   "to": false,
   "of": false,
   "bean": false

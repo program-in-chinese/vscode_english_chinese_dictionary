@@ -1,4 +1,4 @@
-export var 数据 = {
+export const 数据 = {
 "indeterminate error":"[化] 未定误差",
 "indeterminate fault":"[计] 不确定性故障",
 "indeterminate function":"[计] 不定函数",

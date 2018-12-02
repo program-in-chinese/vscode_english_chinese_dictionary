@@ -1,5 +1,5 @@
-export var 词典数据 = {};
-export var 词形变化数据 = {};
+export const 词典数据 = {};
+export const 词形变化数据 = {};
 
 async function 导入数据() {
     for (var 文件序号 = 0; 文件序号 < 16; 文件序号++) {

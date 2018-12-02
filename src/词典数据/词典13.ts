@@ -1,4 +1,4 @@
-export var 数据 = {
+export const 数据 = {
 "sparse array":"[计] 稀疏数组",
 "sparse index":"[计] 稀疏索引",
 "sparse linear equation package":"[计] 稀疏线性方程包",

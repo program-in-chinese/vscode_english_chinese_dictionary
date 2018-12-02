@@ -1,4 +1,4 @@
-export var 数据 = {
+export const 数据 = {
 "'hood":"n. 罩；风帽；（布质）面罩；学位连领帽（表示学位种类）\\nv. 覆盖；用头巾包；使(马,鹰等)戴头罩；给…加罩\\n[网络] 胡德；兜帽；引擎盖",
 "'s Gravenhage":"[荷兰语]海牙(= Hague)",
 "'tween":"prep. [诗歌用语] = between [亦作 tweeny]",

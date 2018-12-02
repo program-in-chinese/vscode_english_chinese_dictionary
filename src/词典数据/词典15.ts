@@ -1,4 +1,4 @@
-export var 数据 = {
+export const 数据 = {
 "walking wounded":" （战争或事故中）尚能走路的伤员",
 "walking-calliper splint":"[医] 双脚规形步行夹",
 "walking-on":"a. [戏]龙套角色,不重要角色的\\na. 龙套角色",

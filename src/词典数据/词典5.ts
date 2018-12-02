@@ -1,4 +1,4 @@
-export var 数据 = {
+export const 数据 = {
 "factorl":"血纤维蛋白原",
 "factors":"n. 因素（factor的复数）",
 "factors of production":"[经] 生产要素",
