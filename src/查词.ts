@@ -16,7 +16,7 @@ const 词形类型 = Object.freeze({
 });
 
 // {"原字段": 原字段, "释义": 翻译, "各词": [{"词": 英文, "释义": 单词释义, "词形": [所有变形]}]};
-export function 取释义(选中文本) {
+export function 取释义(选中文本: string) {
   let 所有词 = 释义处理.取字段中所有词(选中文本);
   let 所有词条 = [];
   for (let 单词 of 所有词) {
@@ -75,7 +75,7 @@ export function 取释义(选中文本) {
 }
 
 // 词形部分数据格式描述: https://github.com/skywind3000/ECDICT#%E8%AF%8D%E5%BD%A2%E5%8F%98%E5%8C%96
-function 提取词形(原字符串) {
+function 提取词形(原字符串: string) {
   let 变化 = [];
   if (!原字符串) {
     return 变化;

@@ -1,4 +1,4 @@
-export const 词性 = [
+export const 词性: string[] = [
   "[j]",
   "[pl.]",
   "[专利]",

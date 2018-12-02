@@ -1,7 +1,8 @@
 
 let 词性_计算机 = "[计]";
 
-function 分词性(中文释义, 所有词性) {
+// TODO: 返回类型
+function 分词性(中文释义: string, 所有词性) {
   let 所有释义 = 中文释义.split('\\n');
   let 词性到释义 = {};
   for (let i in 所有释义) {
@@ -28,7 +29,7 @@ function 分词性(中文释义, 所有词性) {
   return 词性到释义;
 }
 
-export function 首选(中文释义, 所有词性) {
+export function 首选(中文释义: string, 所有词性: string[]): string {
   if (!中文释义) {
     return;
   }
@@ -48,7 +49,7 @@ export function 首选(中文释义, 所有词性) {
   return 首选词义;
 }
 
-export function 取原型(词, 词形) {
+export function 取原型(词: string, 词形): string {
   if (词形) {
     let 原词 = 词;
     let 为复数形式 = false;
@@ -72,7 +73,7 @@ export function 取原型(词, 词形) {
 
 // 假设每个字段除了词, 其他都是非英文字符.
 // 仅翻译无空格的片段
-export function 取字段中所有词(字段文本) {
+export function 取字段中所有词(字段文本: string): string[] {
   // 删去所有前后空格后再提取单词
   let 删除前后空格 = 字段文本.trim();
   // 确认无空格
@@ -90,22 +91,14 @@ export function 取字段中所有词(字段文本) {
   return [];
 }
 
-function 取字段中最长句(字段) {
-  let 句 = 字段.match(/[a-zA-Z\s]+/g);
-  if (句 && 句.length > 0) {
-    return 句[0].trim();
-  }
-  return 字段;
-}
-
-function 拆分骆驼命名(命名) {
+function 拆分骆驼命名(命名: string): string[] {
   // 参考: https://stackoverflow.com/a/46409373/1536803
   // Firefox仍不支持lookbehinds: https://stackoverflow.com/questions/49816707/firefox-invalid-regex-group
   // 不知为何结果中有空字符串, 暂时过滤即可
   return 命名.split(/([A-Z]+|[A-Z]?[a-z]+)(?=[A-Z]|\b)/).filter(词 => 词);
 }
 
-function 消除所有括号内容(中文释义) {
+function 消除所有括号内容(中文释义: string): string {
    // 不确定是否存在多个括号的情况: 清理后.replace(/ *（[^）]*） */g, ""); //
   let 清理后 = 消除括号内容(中文释义, "（", "）");
   清理后 = 清理后.replace(/ *\([^)]*\) */g, "");
@@ -113,7 +106,7 @@ function 消除所有括号内容(中文释义) {
   return 清理后.trim();
 }
 
-function 消除括号内容(中文释义, 开括号, 闭括号) {
+function 消除括号内容(中文释义: string, 开括号: string, 闭括号: string): string {
   let 开括号位置 = 中文释义.indexOf(开括号);
   let 闭括号位置 = 中文释义.indexOf(闭括号);
   if (开括号位置 == -1 || 闭括号位置 == -1) {
