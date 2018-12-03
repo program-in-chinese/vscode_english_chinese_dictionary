@@ -39,7 +39,7 @@ function 更新状态栏(状态框) {
     }
 }
 
-function 取选中文本() {
+function 取选中文本(): string {
     const 当前编辑器 = vscode.window.activeTextEditor;
     if (当前编辑器) {
         const 选中部分 = 当前编辑器.selection;
@@ -47,16 +47,15 @@ function 取选中文本() {
     }
 }
 
-function 查询词条(英文) {
+function 查询词条(英文: string): 查词.字段释义 {
     return 查词.取释义(英文);
 }
 
-function 显示词条(显示, 最大长度) {
+function 显示词条(显示, 最大长度: number): string {
     return 显示.length > 最大长度 ? 显示.substring(0, 最大长度 - 1) + "..." : 显示;
 }
 
-// {"原字段": 原字段, "释义": 翻译, "各词": [{"词": 英文, "释义": 单词释义, "词形": [所有变形]}]};
-function 显示简要信息(查字段结果) {
+function 显示简要信息(查字段结果: 查词.字段释义): string {
     if (!查字段结果.释义) {
         return "查无结果: " + 查字段结果.原字段;
     }
@@ -67,8 +66,7 @@ function 显示简要信息(查字段结果) {
     }
 }
 
-// {"原字段": 原字段, "释义": 翻译, "各词": [{"词": 英文, "释义": 单词释义, "词形": [所有变形]}]};
-function 显示字段信息(查字段结果) {
+function 显示字段信息(查字段结果: 查词.字段释义): string {
     // 长度必大于0
     if (查字段结果.各词.length == 1) {
         return 取单词条信息(查字段结果.各词[0], true);
@@ -81,8 +79,7 @@ function 显示字段信息(查字段结果) {
     }
 }
 
-// {"词": 英文, "释义": 单词释义, "词形": [所有变形]}
-function 取单词条信息(查词结果, 显示原词 = false, 显示词形 = true) {
+function 取单词条信息(查词结果: 查词.单词条, 显示原词: boolean = false, 显示词形: boolean = true): string {
     let 显示 = 显示原词 ? "【" + 查词结果.词 + "】" : "";
     let 释义 = 查词结果.释义;
     if (释义) {

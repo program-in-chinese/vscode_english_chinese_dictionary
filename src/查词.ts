@@ -2,6 +2,23 @@ import * as 释义处理 from './translation/process'
 import * as 常用词典 from './translation/common'
 import * as 词典 from './加载词典'
 
+interface 词形变化 {
+  类型: string;
+  变化: string;
+}
+
+export interface 单词条 {
+  词: string;
+  释义: string;
+  词形: 词形变化[];
+}
+
+export interface 字段释义 {
+  原字段: string;
+  释义: string;
+  各词: 单词条[];
+}
+
 const 词形类型 = Object.freeze({
   "p": "过去式", // past tense
   "d": "过去分词",
@@ -14,22 +31,12 @@ const 词形类型 = Object.freeze({
   "1": "原型变换形式"
 });
 
-// {"原字段": 原字段, "释义": 翻译, "各词": [{"词": 英文, "释义": 单词释义, "词形": [所有变形]}]};
-export function 取释义(选中文本: string) {
+export function 取释义(选中文本: string): 字段释义 {
   let 所有词 = 释义处理.取字段中所有词(选中文本);
   let 所有词条 = [];
   for (let 单词 of 所有词) {
     let 处理后词 = 单词;
 
-    // TODO: 避免两次处理大小写
-    /*let 中文释义 = 查词.取释义(词典数据, 英文).释义;
-    if (!中文释义) {
-        英文 = 英文.toLowerCase();
-        中文释义 = 查词.取释义(词典数据, 英文).释义;
-    }
-    if (!中文释义) {
-        英文 = 英文.toUpperCase();
-    }*/
     if (处理后词 != 单词.toUpperCase()) {
       处理后词 = 单词.toLowerCase();
     } else {
@@ -39,7 +46,9 @@ export function 取释义(选中文本: string) {
       }
     }
     if (处理后词 in 常用词典.不翻译) {
-      所有词条.push({"词": 处理后词, "释义": 处理后词});
+      所有词条.push({
+        词: 处理后词,
+        释义: 处理后词});
       continue;
     }
 
@@ -49,7 +58,11 @@ export function 取释义(选中文本: string) {
       处理后词 = 释义处理.取原型(处理后词, 提取词形(词典.词形变化数据[处理后词]));
     }
     let 所有词形 = 提取词形(词典.词形变化数据[处理后词]);
-    所有词条.push({"词": 处理后词, "释义": 词典.词典数据[处理后词], "词形": 所有词形});
+    所有词条.push({
+      词: 处理后词,
+      释义: 词典.词典数据[处理后词],
+      词形: 所有词形
+    });
   }
   let 释义 = "";
   if (所有词条.length > 1) {
@@ -65,11 +78,15 @@ export function 取释义(选中文本: string) {
     // TODO: 简化词条 (以适应状态栏宽度)
     释义 = 所有词条[0].释义;
   }
-  return {"原字段": 选中文本, "释义": 释义, "各词": 所有词条};
+  return {
+    原字段: 选中文本,
+    释义: 释义,
+    各词: 所有词条
+  };
 }
 
 // 词形部分数据格式描述: https://github.com/skywind3000/ECDICT#%E8%AF%8D%E5%BD%A2%E5%8F%98%E5%8C%96
-function 提取词形(原字符串: string) {
+function 提取词形(原字符串: string): 词形变化[] {
   let 变化 = [];
   if (!原字符串) {
     return 变化;
@@ -87,9 +104,8 @@ function 提取词形(原字符串: string) {
     }
     // 如hyphen(vt): s:hyphens/p:hyphened/i:/3:hyphens/d:, i与d内容缺失, 用空字符串占位
     变化.push({
-      "类型": 类型,
-      "变化": 分段.length == 1 ? "" : (类型 == "原型变换形式" ? 原型变化形式 : 分段[1])
-    }
+      类型: 类型,
+      变化: 分段.length == 1 ? "" : (类型 == "原型变换形式" ? 原型变化形式 : 分段[1])}
     );
   }
   return 变化;
