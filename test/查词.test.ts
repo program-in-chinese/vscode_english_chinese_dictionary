@@ -78,8 +78,8 @@ suite("查词测试", () => {
 
     // 词性搭配
     // 形容词+名词
-    // 检查释义("BasicCalculator", "基本的计算器");
-    // 检查释义("firstSteps", "第一的步骤");
+    检查释义("BasicCalculator", "基本的计算器");
+    检查释义("firstSteps", "第一的步骤");
     // 副词+动词
     // 检查释义("deepEqual", "深入地等于")
   });

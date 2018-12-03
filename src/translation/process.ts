@@ -1,6 +1,8 @@
 import * as 词典常量 from './consts'
 
-let 词性_计算机 = "[计]";
+export const 词性_计算机 = "[计]";
+export const 词性_名词 = "n.";
+export const 词性_形容词 = "a.";
 
 export function 取按词性释义(中文释义: string): Map<string, string[]> {
   let 所有释义 = 中文释义.split('\\n');
@@ -31,15 +33,41 @@ export function 取按词性释义(中文释义: string): Map<string, string[]> 
   return 词性到释义;
 }
 
-export function 首选(中文释义: string): string {
+export function 选取释义(所有词条, 所有词) {
+  let 所有释义 = [];
+
+  // TODO: 重构
+  if (所有词条.length == 2) {
+    let 词1释义 = 所有词条[0].释义;
+    let 词2释义 = 所有词条[1].释义;
+    if (词1释义 && 取按词性释义(词1释义).has(词性_形容词)
+      && 词2释义 && 取按词性释义(词2释义).has(词性_名词)) {
+      所有释义.push(首选(词1释义, 词性_形容词));
+      所有释义.push(首选(词2释义, 词性_名词));
+      return (所有释义);
+    }
+  }
+
+  for (let i = 0; i < 所有词条.length; i++) {
+    let 词条 = 所有词条[i];
+    所有释义.push(词条.释义 ? 首选(词条.释义, 词性_计算机) : 所有词[i]);
+  }
+  return 所有释义;
+}
+
+export function 首选(中文释义: string, 首选词性: string): string {
   if (!中文释义) {
     return;
   }
   let 首选词义 = "";
+
+  // TODO: 减少重复调用
   let 词性到释义 = 取按词性释义(中文释义);
   //console.log(词性到释义);
   if (词性到释义.has(词性_计算机)) {
     首选词义 = 词性到释义.get(词性_计算机)[0];
+  } else if (词性到释义.has(首选词性)) {
+    首选词义 = 词性到释义.get(首选词性)[0];
   } else {
     // 取第一个词性的第一释义
     for (let [k, v] of 词性到释义) {
