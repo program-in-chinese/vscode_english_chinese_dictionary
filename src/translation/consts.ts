@@ -1,3 +1,9 @@
+export const 词性_计算机 = "[计]";
+export const 词性_名词 = "n.";
+export const 词性_形容词 = "a.";
+export const 词性_副词 = "adv.";
+export const 词性_及物动词 = "vt.";
+
 export const 词性: string[] = [
   "[j]",
   "[pl.]",
@@ -190,7 +196,7 @@ export const 词性: string[] = [
   "[药]",
   "[西]",
   "[解剖]",
-  "[计]",
+  词性_计算机,
   "[计][印刷]",
   "[计][图情]",
   "[计][心理]",
@@ -215,10 +221,10 @@ export const 词性: string[] = [
   "[食品]",
   "[鱼]",
   "[鸟]",
-  "a.",
+  词性_形容词,
   "abbr.",
   "adj.",
-  "adv.",
+  词性_副词,
   "art.",
   "aux.",
   "col.",
@@ -229,7 +235,7 @@ export const 词性: string[] = [
   "ing.",
   "int.",
   "interj.",
-  "n.",
+  词性_名词,
   "na.",
   "num.",
   "pers.",
@@ -252,5 +258,5 @@ export const 词性: string[] = [
   "v.",
   "vbl.",
   "vi.",
-  "vt."
+  词性_及物动词
 ]
