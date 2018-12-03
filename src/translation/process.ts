@@ -1,13 +1,16 @@
+import * as 词典常量 from './consts'
 
 let 词性_计算机 = "[计]";
 
-// TODO: 返回类型
-function 分词性(中文释义: string, 所有词性) {
+export function 取按词性释义(中文释义: string): Map<string, string[]> {
   let 所有释义 = 中文释义.split('\\n');
-  let 词性到释义 = {};
+  let 词性到释义 = new Map<string, string[]>();
   for (let i in 所有释义) {
     let 除去词性 = 所有释义[i];
     let 当前词性 = '';
+
+    // TODO: 避免遍历所有词性
+    let 所有词性 = 词典常量.词性
     for (let j in 所有词性) {
       let 词性 = 所有词性[j];
       if (除去词性.indexOf(词性) == 0) {
@@ -19,29 +22,28 @@ function 分词性(中文释义: string, 所有词性) {
     // 按逗号分隔词义
     // TODO: 也有分号分隔
     let 词义 = 除去词性.split(/[；;,]/);
-    //console.log(词义)
-    let 此词性的释义 = []
-    for (let 索引 in 词义) {
-      此词性的释义.push(词义[索引].trim());
+    let 此词性的释义: string[] = []
+    for (let 某词义 of 词义) {
+      此词性的释义.push(某词义.trim());
     }
-    词性到释义[当前词性] = 此词性的释义;
+    词性到释义.set(当前词性, 此词性的释义);
   }
   return 词性到释义;
 }
 
-export function 首选(中文释义: string, 所有词性: string[]): string {
+export function 首选(中文释义: string): string {
   if (!中文释义) {
     return;
   }
   let 首选词义 = "";
-  let 词性到释义 = 分词性(中文释义, 所有词性);
+  let 词性到释义 = 取按词性释义(中文释义);
   //console.log(词性到释义);
-  if (词性到释义[词性_计算机]) {
-    首选词义 = 词性到释义[词性_计算机][0];
+  if (词性到释义.has(词性_计算机)) {
+    首选词义 = 词性到释义.get(词性_计算机)[0];
   } else {
     // 取第一个词性的第一释义
-    for (let 词性 in 词性到释义) {
-      首选词义 = 词性到释义[词性][0];
+    for (let [k, v] of 词性到释义) {
+      首选词义 = v[0];
       break;
     }
   }

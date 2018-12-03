@@ -1,5 +1,4 @@
 import * as 释义处理 from './translation/process'
-import * as 词典常量 from './translation/consts'
 import * as 常用词典 from './translation/common'
 import * as 词典 from './加载词典'
 
@@ -64,7 +63,7 @@ export function 取释义(选中文本: string) {
     let 所有释义 = [];
     for (let i = 0; i < 所有词条.length; i++) {
       let 词条 = 所有词条[i];
-      所有释义.push(词条.释义 ? 释义处理.首选(词条.释义, 词典常量.词性) : 所有词[i]);
+      所有释义.push(词条.释义 ? 释义处理.首选(词条.释义) : 所有词[i]);
     }
     释义 = 所有释义.join(分隔);
   } else if (所有词条.length == 1) {
