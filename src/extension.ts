@@ -1,4 +1,5 @@
 const vscode = require('vscode');
+import * as 模型 from './translation/model'
 import * as 查词 from './查词';
 
 function activate(context) {
@@ -47,7 +48,7 @@ function 取选中文本(): string {
     }
 }
 
-function 查询词条(英文: string): 查词.字段释义 {
+function 查询词条(英文: string): 模型.字段释义 {
     return 查词.取释义(英文);
 }
 
@@ -55,7 +56,7 @@ function 显示词条(显示, 最大长度: number): string {
     return 显示.length > 最大长度 ? 显示.substring(0, 最大长度 - 1) + "..." : 显示;
 }
 
-function 显示简要信息(查字段结果: 查词.字段释义): string {
+function 显示简要信息(查字段结果: 模型.字段释义): string {
     if (!查字段结果.释义) {
         return "查无结果: " + 查字段结果.原字段;
     }
@@ -66,7 +67,7 @@ function 显示简要信息(查字段结果: 查词.字段释义): string {
     }
 }
 
-function 显示字段信息(查字段结果: 查词.字段释义): string {
+function 显示字段信息(查字段结果: 模型.字段释义): string {
     // 长度必大于0
     if (查字段结果.各词.length == 1) {
         return 取单词条信息(查字段结果.各词[0], true);
@@ -79,7 +80,7 @@ function 显示字段信息(查字段结果: 查词.字段释义): string {
     }
 }
 
-function 取单词条信息(查词结果: 查词.单词条, 显示原词: boolean = false, 显示词形: boolean = true): string {
+function 取单词条信息(查词结果: 模型.单词条, 显示原词: boolean = false, 显示词形: boolean = true): string {
     let 显示 = 显示原词 ? "【" + 查词结果.词 + "】" : "";
     let 释义 = 查词结果.释义;
     if (释义) {

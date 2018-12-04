@@ -1,24 +1,9 @@
 import * as 释义处理 from './translation/process'
 import * as 常用词典 from './translation/common'
+import * as 模型 from './translation/model'
 import * as 词典 from './加载词典'
 
-interface 词形变化 {
-  类型: string;
-  变化: string;
-}
-
-export interface 单词条 {
-  词: string;
-  释义: string;
-  词形: 词形变化[];
-}
-
-export interface 字段释义 {
-  原字段: string;
-  释义: string;
-  各词: 单词条[];
-}
-
+const 词形_原型变换形式 = "原型变换形式"
 const 词形类型 = Object.freeze({
   "p": "过去式", // past tense
   "d": "过去分词",
@@ -28,10 +13,10 @@ const 词形类型 = Object.freeze({
   "t": "形容词最高级", // -est
   "s": "名词复数形式",
   "0": "原型",
-  "1": "原型变换形式"
+  "1": 词形_原型变换形式
 });
 
-export function 取释义(选中文本: string): 字段释义 {
+export function 取释义(选中文本: string): 模型.字段释义 {
   let 所有词 = 释义处理.取字段中所有词(选中文本);
   let 所有词条 = [];
   for (let 单词 of 所有词) {
@@ -86,7 +71,7 @@ export function 取释义(选中文本: string): 字段释义 {
 }
 
 // 词形部分数据格式描述: https://github.com/skywind3000/ECDICT#%E8%AF%8D%E5%BD%A2%E5%8F%98%E5%8C%96
-function 提取词形(原字符串: string): 词形变化[] {
+function 提取词形(原字符串: string): 模型.词形变化[] {
   let 变化 = [];
   if (!原字符串) {
     return 变化;
@@ -97,7 +82,7 @@ function 提取词形(原字符串: string): 词形变化[] {
 
     let 类型 = 词形类型[分段[0]];
     let 原型变化形式 = [];
-    if (类型 == "原型变换形式") {
+    if (类型 == 词形_原型变换形式) {
       for (let 变化形式 of 分段[1]) {
         原型变化形式.push(词形类型[变化形式]);
       }
@@ -105,7 +90,7 @@ function 提取词形(原字符串: string): 词形变化[] {
     // 如hyphen(vt): s:hyphens/p:hyphened/i:/3:hyphens/d:, i与d内容缺失, 用空字符串占位
     变化.push({
       类型: 类型,
-      变化: 分段.length == 1 ? "" : (类型 == "原型变换形式" ? 原型变化形式 : 分段[1])}
+      变化: 分段.length == 1 ? "" : (类型 == 词形_原型变换形式 ? 原型变化形式 : 分段[1])}
     );
   }
   return 变化;

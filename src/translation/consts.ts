@@ -4,7 +4,7 @@ export const 词性_形容词 = "a.";
 export const 词性_副词 = "adv.";
 export const 词性_及物动词 = "vt.";
 
-export const 词性: string[] = [
+export const 词性: Set<string> = new Set([
   "[j]",
   "[pl.]",
   "[专利]",
@@ -259,4 +259,4 @@ export const 词性: string[] = [
   "vbl.",
   "vi.",
   词性_及物动词
-]
+])

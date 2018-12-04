@@ -1,3 +1,4 @@
+import * as 模型 from './model'
 import * as 词典常量 from './consts'
 
 export function 取按词性释义(中文释义: string): Map<string, string[]> {
@@ -5,18 +6,14 @@ export function 取按词性释义(中文释义: string): Map<string, string[]> 
   let 词性到释义 = new Map<string, string[]>();
   for (let i in 所有释义) {
     let 除去词性 = 所有释义[i];
-    let 当前词性 = '';
-
-    // TODO: 避免遍历所有词性
-    let 所有词性 = 词典常量.词性
-    for (let j in 所有词性) {
-      let 词性 = 所有词性[j];
-      if (除去词性.indexOf(词性) == 0) {
-        当前词性 = 词性;
-        除去词性 = 除去词性.substring(词性.length).trim();
-        break;
-      }
+    let 首空格位置 = 除去词性.indexOf(' ');
+    let 当前词性 = 首空格位置 > 0 ? 除去词性.substring(0, 首空格位置) : '';
+    if (当前词性 && 词典常量.词性.has(当前词性)) {
+      除去词性 = 除去词性.substring(当前词性.length).trim();
+    } else {
+      当前词性 = '';
     }
+
     // 按逗号分隔词义
     // TODO: 也有分号分隔
     let 词义 = 除去词性.split(/[；;,]/);
@@ -29,7 +26,7 @@ export function 取按词性释义(中文释义: string): Map<string, string[]> 
   return 词性到释义;
 }
 
-export function 选取释义(所有词条, 所有词) {
+export function 选取释义(所有词条: 模型.单词条[], 所有词: string[]): string[] {
   let 所有释义 = [];
 
   // TODO: 重构
@@ -59,7 +56,6 @@ export function 首选(中文释义: string, 首选词性: string): string {
 
   // TODO: 减少重复调用
   let 词性到释义 = 取按词性释义(中文释义);
-  //console.log(词性到释义);
   if (词性到释义.has(词典常量.词性_计算机)) {
     首选词义 = 词性到释义.get(词典常量.词性_计算机)[0];
   } else if (词性到释义.has(首选词性)) {
