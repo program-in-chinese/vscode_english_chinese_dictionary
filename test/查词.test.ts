@@ -62,16 +62,16 @@ suite("查词测试", () => {
       查词.取释义("seconds")
     );
 
-    assert.equal("执行路径", 查词.取释义("execPath").释义);
+    检查释义("execPath", "执行路径");
 
-    assert.equal("字符串_译码器", 查词.取释义("string_decoder").释义);
-    assert.equal("帐户_数字", 查词.取释义("ACCOUNT_NUMBER").释义);
-    assert.equal("帐户数字", 查词.取释义("_ACCOUNT_NUMBER").释义);
+    检查释义("string_decoder", "字符串_译码器");
+    检查释义("ACCOUNT_NUMBER", "帐户_数字");
+    检查释义("_ACCOUNT_NUMBER", "帐户数字");
 
-    assert.equal("取得指令秒", 查词.取释义("getSeconds").释义);
-    assert.equal("使用颜色", 查词.取释义("useColors").释义);
+    检查释义("getSeconds", "取得指令秒");
+    检查释义("useColors", "使用颜色");
 
-    assert.equal("fs路径", 查词.取释义("fsPath").释义);
+    检查释义("fsPath", "fs路径");
 
     // 取现在分词原型
     检查释义("gettingStarted", "取得指令出发");
