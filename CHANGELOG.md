@@ -1,5 +1,11 @@
 ## 各版本更新说明
 
+### 0.0.7
+
+中文编程[知乎专栏](https://zhuanlan.zhihu.com/codeInChinese)文章: [VS Code英汉词典插件v0.0.7-尝试词性搭配](https://zhuanlan.zhihu.com/p/51525136)
+- 优先形容词+名词组合: 如命名中包含两个词, 前一个有形容词义, 后一个有名词义, 这两个词义优先. 如"BasicCalculator", 原为"基本原理计算器". 现为"基本的计算器"
+- 如命名中包含现在分词, 取原型的释义
+
 ### 0.0.6
 
 中文编程[知乎专栏](https://zhuanlan.zhihu.com/codeInChinese)文章: [VS Code英汉词典插件v0.0.6-改为TS实现, 加测试](https://zhuanlan.zhihu.com/p/51243255)
