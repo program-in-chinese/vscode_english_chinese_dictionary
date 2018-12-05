@@ -1,3 +1,6 @@
+[![installs](https://vsmarketplacebadge.apphb.com/installs/CodeInChinese.EnglishChineseDictionary.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=CodeInChinese.EnglishChineseDictionary)
+[![version](https://vsmarketplacebadge.apphb.com/version/CodeInChinese.EnglishChineseDictionary.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=CodeInChinese.EnglishChineseDictionary)
+
 # 英汉词典使用说明
 
 在状态栏中显示选中词的释义, 支持驼峰和下划线命名查询
