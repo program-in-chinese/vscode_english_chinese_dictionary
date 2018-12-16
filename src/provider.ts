@@ -1,30 +1,20 @@
-/*---------------------------------------------------------
- * Copyright (C) Microsoft Corporation. All rights reserved.
- *--------------------------------------------------------*/
 'use strict';
 
 import * as vscode from 'vscode';
-import ReferencesDocument from './referencesDocument';
 
-export default class Provider implements vscode.TextDocumentContentProvider, vscode.DocumentLinkProvider {
+export default class Provider implements vscode.TextDocumentContentProvider{
 
 	static scheme = 'references';
 
 	private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
-	private _documents = new Map<string, ReferencesDocument>();
 	private _editorDecoration = vscode.window.createTextEditorDecorationType({ textDecoration: 'underline' });
 	private _subscriptions: vscode.Disposable;
 
 	constructor() {
-
-		// Listen to the `closeTextDocument`-event which means we must
-		// clear the corresponding model object - `ReferencesDocument`
-		this._subscriptions = vscode.workspace.onDidCloseTextDocument(doc => this._documents.delete(doc.uri.toString()));
 	}
 
 	dispose() {
 		this._subscriptions.dispose();
-		this._documents.clear();
 		this._editorDecoration.dispose();
 		this._onDidChange.dispose();
 	}
@@ -39,14 +29,7 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 	// resolves its content by (1) running the reference search command
 	// and (2) formatting the results
 	provideTextDocumentContent(uri: vscode.Uri): string | Thenable<string> {
-
-		// already loaded?
-		let document = this._documents.get(uri.toString());
-		if (document) {
-			return document.value;
-		}
-
-		return "测试";
+		return "class BasicCalculator {}";
 		// Decode target-uri and target-position from the provided uri and execute the
 		// `reference provider` command (http://code.visualstudio.com/docs/extensionAPI/vscode-api-commands).
 		// From the result create a references document which is in charge of loading,
@@ -65,33 +48,13 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 			return document.value;
 		});*/
 	}
-
-	private static _compareLocations(a: vscode.Location, b: vscode.Location): number {
-		if (a.uri.toString() < b.uri.toString()) {
-			return -1;
-		} else if (a.uri.toString() > b.uri.toString()) {
-			return 1;
-		} else {
-			return a.range.start.compareTo(b.range.start)
-		}
-	}
-
-	provideDocumentLinks(document: vscode.TextDocument, token: vscode.CancellationToken): vscode.DocumentLink[] {
-		// While building the virtual document we have already created the links.
-		// Those are composed from the range inside the document and a target uri
-		// to which they point
-		const doc = this._documents.get(document.uri.toString());
-		if (doc) {
-			return doc.links;
-		}
-	}
 }
 
 let seq = 0;
 
 export function encodeLocation(uri: vscode.Uri, pos: vscode.Position): vscode.Uri {
 	const query = JSON.stringify([uri.toString(), pos.line, pos.character]);
-	return vscode.Uri.parse(`${Provider.scheme}:References.locations?${query}#${seq++}`);
+	return vscode.Uri.parse(`${Provider.scheme}:test.java?${query}#${seq++}`);
 }
 
 export function decodeLocation(uri: vscode.Uri): [vscode.Uri, vscode.Position] {

@@ -9,8 +9,7 @@ function activate(context: ExtensionContext) {
     const provider = new ContentProvider();
 
     const providerRegistrations = Disposable.from(
-		workspace.registerTextDocumentContentProvider(ContentProvider.scheme, provider),
-		languages.registerDocumentLinkProvider({ scheme: ContentProvider.scheme }, provider)
+		workspace.registerTextDocumentContentProvider(ContentProvider.scheme, provider)
     );
 
 	const commandRegistration = commands.registerTextEditorCommand('editor.printReferences', editor => {
