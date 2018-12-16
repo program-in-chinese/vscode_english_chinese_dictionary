@@ -46,11 +46,12 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 			return document.value;
 		}
 
+		return "测试";
 		// Decode target-uri and target-position from the provided uri and execute the
 		// `reference provider` command (http://code.visualstudio.com/docs/extensionAPI/vscode-api-commands).
 		// From the result create a references document which is in charge of loading,
 		// printing, and formatting references
-		const [target, pos] = decodeLocation(uri);
+		/*const [target, pos] = decodeLocation(uri);
 		return vscode.commands.executeCommand<vscode.Location[]>('vscode.executeReferenceProvider', target, pos).then(locations => {
 
 			// sort by locations and shuffle to begin from target resource
@@ -62,7 +63,7 @@ export default class Provider implements vscode.TextDocumentContentProvider, vsc
 			let document = new ReferencesDocument(uri, locations, this._onDidChange);
 			this._documents.set(uri.toString(), document);
 			return document.value;
-		});
+		});*/
 	}
 
 	private static _compareLocations(a: vscode.Location, b: vscode.Location): number {

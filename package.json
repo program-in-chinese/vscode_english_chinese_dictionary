@@ -20,10 +20,10 @@
                 "command": "extension.翻译选中文本",
                 "title": "英汉词典"
             },
-{
-"command": "editor.printReferences",
-"title": "显示所有引用"
-}
+            {
+                "command": "editor.printReferences",
+                "title": "显示所有引用"
+            }
         ]
     },
     "scripts": {
