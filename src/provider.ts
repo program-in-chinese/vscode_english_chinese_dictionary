@@ -7,7 +7,6 @@ export default class Provider implements vscode.TextDocumentContentProvider{
 	static scheme = 'references';
 
 	private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
-	private _editorDecoration = vscode.window.createTextEditorDecorationType({ textDecoration: 'underline' });
 	private _subscriptions: vscode.Disposable;
 
 	constructor() {
@@ -15,7 +14,6 @@ export default class Provider implements vscode.TextDocumentContentProvider{
 
 	dispose() {
 		this._subscriptions.dispose();
-		this._editorDecoration.dispose();
 		this._onDidChange.dispose();
 	}
 
@@ -29,23 +27,22 @@ export default class Provider implements vscode.TextDocumentContentProvider{
 	// resolves its content by (1) running the reference search command
 	// and (2) formatting the results
 	provideTextDocumentContent(uri: vscode.Uri): string | Thenable<string> {
-		return "class BasicCalculator {}";
+		return vscode.window.activeTextEditor.document.getText();
+		/*return "class BasicCalculator {\n"
+		+ "  public static void main(String[] args) {\n"
+		+ "  	 BasicCalculator calculator = new BasicCalculator();\n"
+		+ "    calculator.divide(1, 2);\n"
+		+ "  }\n"
+		+ "}";*/
 		// Decode target-uri and target-position from the provided uri and execute the
 		// `reference provider` command (http://code.visualstudio.com/docs/extensionAPI/vscode-api-commands).
 		// From the result create a references document which is in charge of loading,
 		// printing, and formatting references
-		/*const [target, pos] = decodeLocation(uri);
-		return vscode.commands.executeCommand<vscode.Location[]>('vscode.executeReferenceProvider', target, pos).then(locations => {
-
-			// sort by locations and shuffle to begin from target resource
-			let idx = 0;
-			locations.sort(Provider._compareLocations).find((loc, i) => loc.uri.toString() === target.toString() && (idx = i) && true);
-			locations.push(...locations.splice(0, idx));
-
-			// create document and return its early state
-			let document = new ReferencesDocument(uri, locations, this._onDidChange);
-			this._documents.set(uri.toString(), document);
-			return document.value;
+		const [target, pos] = decodeLocation(uri);
+		/*return vscode.commands.executeCommand<vscode.WorkspaceEdit>('vscode.executeDocumentRenameProvider', target, pos, "中文命名").then(edit => {
+			if (edit) {
+				return vscode.workspace.applyEdit(edit);
+			}
 		});*/
 	}
 }
