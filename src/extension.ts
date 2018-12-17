@@ -1,28 +1,28 @@
 //const vscode = require('vscode');
 import { workspace, languages, window, commands, ExtensionContext, Disposable, StatusBarAlignment} from 'vscode';
-import ContentProvider, { encodeLocation } from './provider';
+import 内容提供器, { encodeLocation } from './整文件翻译';
 import * as 模型 from './translation/model'
 import * as 查词 from './查词';
 
 function activate(context: ExtensionContext) {
 
-    const provider = new ContentProvider();
+    const 提供器 = new 内容提供器();
 
-    const providerRegistrations = Disposable.from(
-		workspace.registerTextDocumentContentProvider(ContentProvider.scheme, provider)
+    const 提供器注册 = Disposable.from(
+		workspace.registerTextDocumentContentProvider(内容提供器.scheme, 提供器)
     );
 
-	const commandRegistration = commands.registerTextEditorCommand('editor.翻译标识符', editor => {
-		const uri = encodeLocation(editor.document.uri, editor.selection.active);
-		return workspace.openTextDocument(uri).then(doc => window.showTextDocument(doc, editor.viewColumn + 1));
+	const 命令注册 = commands.registerTextEditorCommand('editor.翻译标识符', 编辑器 => {
+		const uri = encodeLocation(编辑器.document.uri, 编辑器.selection.active);
+		return workspace.openTextDocument(uri).then(代码文件 => window.showTextDocument(代码文件, 编辑器.viewColumn + 1));
     });
 
     const 状态框 = window.createStatusBarItem(StatusBarAlignment.Right, 100);
     状态框.command = 'extension.翻译选中文本';
     context.subscriptions.push(
-        provider,
-        commandRegistration,
-        providerRegistrations,
+        提供器,
+        命令注册,
+        提供器注册,
         状态框
     );
 
