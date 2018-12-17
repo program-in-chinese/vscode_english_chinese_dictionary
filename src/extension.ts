@@ -12,7 +12,7 @@ function activate(context: ExtensionContext) {
 		workspace.registerTextDocumentContentProvider(ContentProvider.scheme, provider)
     );
 
-	const commandRegistration = commands.registerTextEditorCommand('editor.printReferences', editor => {
+	const commandRegistration = commands.registerTextEditorCommand('editor.翻译标识符', editor => {
 		const uri = encodeLocation(editor.document.uri, editor.selection.active);
 		return workspace.openTextDocument(uri).then(doc => window.showTextDocument(doc, editor.viewColumn + 1));
     });

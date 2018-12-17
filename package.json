@@ -21,8 +21,8 @@
                 "title": "英汉词典"
             },
             {
-                "command": "editor.printReferences",
-                "title": "显示所有引用"
+                "command": "editor.翻译标识符",
+                "title": "翻译标识符"
             }
         ]
     },
