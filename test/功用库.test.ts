@@ -1,6 +1,6 @@
 import * as assert from 'assert'
 
-import * as 功用库 from '../src/功用库'
+import * as 功用库 from '../src/util'
 
 suite("测试", () => {
 
