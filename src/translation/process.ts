@@ -123,9 +123,13 @@ function 拆分骆驼命名(命名: string): string[] {
 function 消除所有括号内容(中文释义: string): string {
    // 不确定是否存在多个括号的情况: 清理后.replace(/ *（[^）]*） */g, ""); //
   let 清理后 = 消除括号内容(中文释义, "（", "）");
-  清理后 = 清理后.replace(/ *\([^)]*\) */g, "");
+  清理后 = 消除英文小括号内容(清理后);
   清理后 = 清理后.replace(/ *\[[^)]*\] */g, "");
   return 清理后.trim();
+}
+
+export function 消除英文小括号内容(字符串: string): string {
+  return 字符串.replace(/ *\([^)]*\) */g, "");
 }
 
 function 消除括号内容(中文释义: string, 开括号: string, 闭括号: string): string {

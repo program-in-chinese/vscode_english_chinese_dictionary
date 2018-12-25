@@ -2,7 +2,7 @@
     "name": "EnglishChineseDictionary",
     "displayName": "英汉词典",
     "description": "包含77万词条的本地英汉词典, 支持驼峰和下划线命名",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "publisher": "CodeInChinese",
     "engines": {
         "vscode": "^1.29.0"
@@ -19,6 +19,10 @@
             {
                 "command": "extension.翻译选中文本",
                 "title": "英汉词典"
+            },
+            {
+                "command": "editor.批量翻译标识符",
+                "title": "批量翻译标识符"
             }
         ]
     },

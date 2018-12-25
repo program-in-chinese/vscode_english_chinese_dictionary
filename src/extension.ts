@@ -1,16 +1,30 @@
-const vscode = require('vscode');
+//const vscode = require('vscode');
+import { workspace, languages, window, commands, ExtensionContext, Disposable, StatusBarAlignment} from 'vscode';
+import 内容提供器, { encodeLocation } from './整文件翻译';
 import * as 模型 from './translation/model'
 import * as 查词 from './查词';
 
-function activate(context) {
-    const window = vscode.window;
-    const StatusBarAlignment = vscode.StatusBarAlignment;
-    const workspace = vscode.workspace;
-    const commands = vscode.commands;
+function activate(context: ExtensionContext) {
+
+    const 提供器 = new 内容提供器();
+
+    const 提供器注册 = Disposable.from(
+		workspace.registerTextDocumentContentProvider(内容提供器.scheme, 提供器)
+    );
+
+	const 命令注册 = commands.registerTextEditorCommand('editor.批量翻译标识符', 编辑器 => {
+		const uri = encodeLocation(编辑器.document.uri, 编辑器.selection.active);
+		return workspace.openTextDocument(uri).then(代码文件 => window.showTextDocument(代码文件, 编辑器.viewColumn + 1));
+    });
 
     const 状态框 = window.createStatusBarItem(StatusBarAlignment.Right, 100);
     状态框.command = 'extension.翻译选中文本';
-    context.subscriptions.push(状态框);
+    context.subscriptions.push(
+        提供器,
+        命令注册,
+        提供器注册,
+        状态框
+    );
 
     context.subscriptions.push(window.onDidChangeActiveTextEditor(e => 更新状态栏(状态框)));
     context.subscriptions.push(window.onDidChangeTextEditorSelection(e => 更新状态栏(状态框)));
@@ -41,7 +55,7 @@ function 更新状态栏(状态框) {
 }
 
 function 取选中文本(): string {
-    const 当前编辑器 = vscode.window.activeTextEditor;
+    const 当前编辑器 = window.activeTextEditor;
     if (当前编辑器) {
         const 选中部分 = 当前编辑器.selection;
         return 当前编辑器.document.getText(选中部分);
