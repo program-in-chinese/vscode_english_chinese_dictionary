@@ -12,7 +12,7 @@ function activate(context: ExtensionContext) {
 		workspace.registerTextDocumentContentProvider(内容提供器.scheme, 提供器)
     );
 
-	const 命令注册 = commands.registerTextEditorCommand('editor.翻译标识符', 编辑器 => {
+	const 命令注册 = commands.registerTextEditorCommand('editor.批量翻译标识符', 编辑器 => {
 		const uri = encodeLocation(编辑器.document.uri, 编辑器.selection.active);
 		return workspace.openTextDocument(uri).then(代码文件 => window.showTextDocument(代码文件, 编辑器.viewColumn + 1));
     });

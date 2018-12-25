@@ -1,60 +1,59 @@
 'use strict';
+import * as 释义处理 from './translation/process'
+import * as 词典常量 from './translation/consts'
+import * as 功用库 from './功用库';
+import * as 查词 from './查词';
 
 import * as vscode from 'vscode';
 
-export default class 整文件翻译 implements vscode.TextDocumentContentProvider{
+export default class 整文件翻译 implements vscode.TextDocumentContentProvider {
 
 	static scheme = 'references';
-	private _演示字典: Map<String, String> = new Map([
-		["BasicCalculator", "基本的计算器"],
-		["Calculator", "计算器类"],
-		["calculator", "计算器"],
-		["add", "加"],
-		["subtract", "減"],
-		["multiply", "乘"],
-		["divide", "除"],
-		["first", "第一"],
-		["second", "第二"],
-		["number", "数"],
-		["divisor", "除数"]
-	]);
+	private 原命名列表: string[] = [];
 
 	dispose() {
 	}
 
 	provideTextDocumentContent(uri: vscode.Uri): string | Thenable<string> {
-		// TODO: 如果没有档期活跃编辑器, 返回空
+		// TODO: 如果没有当前活跃编辑器, 返回空
 		let textEditor = vscode.window.activeTextEditor;
-		vscode.commands.executeCommand<vscode.DocumentSymbol[]>('vscode.executeDocumentSymbolProvider', textEditor.document.uri)
+		return vscode.commands.executeCommand<vscode.DocumentSymbol[]>('vscode.executeDocumentSymbolProvider', textEditor.document.uri)
 			.then(
 				(symbols: Array<vscode.DocumentSymbol>) => {
-					console.log(symbols.length);
 					for (var 标识符 of symbols) {
-						console.log(标识符.name);
+						this.原命名列表.push(释义处理.消除英文小括号内容(标识符.name));
 						for (var 子标识符 of 标识符.children) {
-							console.log(子标识符.name);
+							this.原命名列表.push(释义处理.消除英文小括号内容(子标识符.name));
 						}
 					}
+
+					// 长词先查释义, 以免出现一个命名"xxxxyyyy"先替换了yyyy而xxxx未替换的情况
+					this.原命名列表.sort(function (a, b) { return b.length - a.length });
+
+					var 新内容 = textEditor.document.getText();
+					for (var 原命名 of this.原命名列表) {
+						let 中文释义 = 查词.取释义(原命名).释义;
+						let 翻译 = 释义处理.取字段中所有词(原命名).length > 1
+							? 中文释义
+							: 释义处理.首选(中文释义, 词典常量.词性_计算机);
+						if (翻译) {
+							新内容 = this._replaceAll(新内容, 原命名, 翻译);
+						}
+					}
+					return 新内容;
 				}
-			);
-		// vscode.SymbolInformation[] | 
-		// vscode.SymbolInformation | 
-		
-		var 新内容 = textEditor.document.getText();
-		for (var 原命名 of this._演示字典.keys()) {
-		  新内容 = this._replaceAll(新内容, 原命名, this._演示字典.get(原命名));
-		}
-		return 新内容;
+			)
 	}
 
 	private _replaceAll(str, find, replace) {
-    return str.replace(new RegExp(find, 'g'), replace);
-  }
+		return str.replace(new RegExp(find, 'g'), replace);
+	}
 }
 
 let seq = 0;
 
 export function encodeLocation(uri: vscode.Uri, pos: vscode.Position): vscode.Uri {
 	const query = JSON.stringify([uri.toString(), pos.line, pos.character]);
-	return vscode.Uri.parse(`${整文件翻译.scheme}:test.java?${query}#${seq++}`);
+	let 文件名 = 功用库.取文件名(uri.path);
+	return vscode.Uri.parse(`${整文件翻译.scheme}:翻译${文件名}?${query}#${seq++}`);
 }
