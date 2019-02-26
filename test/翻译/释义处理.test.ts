@@ -1,6 +1,6 @@
 import * as assert from 'assert';
-import * as 释义处理 from '../../src/源码翻译/处理'
-import * as 词典常量 from '../../src/源码翻译/词典相关常量'
+import * as 释义处理 from '../../src/翻译/处理'
+import * as 词典常量 from '../../src/翻译/词典相关常量'
 
 suite("释义处理测试", () => {
 

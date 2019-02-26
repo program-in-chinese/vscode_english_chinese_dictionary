@@ -1,6 +1,6 @@
-import * as 释义处理 from './源码翻译/处理'
-import * as 自定义词典 from './源码翻译/自定义词典'
-import * as 模型 from './源码翻译/数据类型'
+import * as 释义处理 from './翻译/处理'
+import * as 自定义词典 from './翻译/自定义词典'
+import * as 模型 from './翻译/数据类型'
 import * as 词典 from './加载词典'
 
 const 词形_原型变换形式 = "原型变换形式"
