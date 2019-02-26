@@ -1,5 +1,5 @@
-import * as 模型 from './model'
-import * as 词典常量 from './consts'
+import * as 模型 from './数据类型'
+import * as 词典常量 from './词典相关常量'
 
 export function 取按词性释义(中文释义: string): Map<string, string[]> {
   let 所有释义 = 中文释义.split('\\n');

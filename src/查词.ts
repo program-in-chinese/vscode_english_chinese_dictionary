@@ -1,6 +1,6 @@
-import * as 释义处理 from './translation/process'
-import * as 常用词典 from './translation/common'
-import * as 模型 from './translation/model'
+import * as 释义处理 from './源码翻译/处理'
+import * as 自定义词典 from './源码翻译/自定义词典'
+import * as 模型 from './源码翻译/数据类型'
 import * as 词典 from './加载词典'
 
 const 词形_原型变换形式 = "原型变换形式"
@@ -30,7 +30,7 @@ export function 取释义(选中文本: string): 模型.字段释义 {
         处理后词 = 单词.toLowerCase();
       }
     }
-    if (处理后词 in 常用词典.不翻译) {
+    if (处理后词 in 自定义词典.不翻译) {
       所有词条.push({
         词: 处理后词,
         释义: 处理后词});

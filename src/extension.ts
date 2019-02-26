@@ -1,7 +1,7 @@
 //const vscode = require('vscode');
 import { workspace, languages, window, commands, ExtensionContext, Disposable, StatusBarAlignment} from 'vscode';
 import 内容提供器, { encodeLocation } from './整文件翻译';
-import * as 模型 from './translation/model'
+import * as 模型 from './源码翻译/数据类型'
 import * as 查词 from './查词';
 
 function activate(context: ExtensionContext) {

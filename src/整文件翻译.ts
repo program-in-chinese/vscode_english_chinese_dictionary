@@ -1,7 +1,7 @@
 'use strict';
-import * as 释义处理 from './translation/process'
-import * as 词典常量 from './translation/consts'
-import * as 功用库 from './util';
+import * as 释义处理 from './源码翻译/处理'
+import * as 词典常量 from './源码翻译/词典相关常量'
+import * as 功用库 from './功用库';
 import * as 查词 from './查词';
 
 import * as vscode from 'vscode';

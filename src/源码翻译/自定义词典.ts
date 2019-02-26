@@ -33,6 +33,7 @@ const 常用命名 = {
 };
 
 export const 不翻译 = {
+  "is": false,
   "to": false,
   "of": false,
   "bean": false
