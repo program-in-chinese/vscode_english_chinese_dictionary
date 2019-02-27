@@ -66,7 +66,9 @@ suite("查词测试", () => {
 
     检查释义("string_decoder", "字符串_译码器");
     检查释义("ACCOUNT_NUMBER", "帐户_数字");
-    检查释义("_ACCOUNT_NUMBER", "帐户数字");
+    检查释义("_ACCOUNT_NUMBER", "_帐户_数字");
+    检查释义("account_number_0", "帐户_数字_0");
+    检查释义("account_number0", "帐户_数字0");
 
     检查释义("getSeconds", "取得指令秒");
     检查释义("useColors", "使用颜色");
