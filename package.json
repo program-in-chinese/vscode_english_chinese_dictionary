@@ -1,8 +1,8 @@
 {
     "name": "EnglishChineseDictionary",
     "displayName": "翻译(英汉词典)",
-    "description": "包含77万词条的本地英汉词典, 可翻译驼峰和下划线命名, 可对整个文件中的标识符批量翻译",
-    "version": "0.0.9",
+    "description": "包含77万词条的本地英汉词典, 可翻译驼峰和下划线命名, 可对整个文件中的标识符批量翻译. Translate identifiers to Chinese",
+    "version": "0.0.10",
     "publisher": "CodeInChinese",
     "engines": {
         "vscode": "^1.29.0"
