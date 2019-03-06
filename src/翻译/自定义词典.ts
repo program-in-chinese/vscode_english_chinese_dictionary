@@ -32,6 +32,10 @@ export const 常用命名 = {
   "remove": "删除"
 };
 
+export const 常用短语 = {
+  "get started": "启动"
+}
+
 export const 不翻译 = {
   "to": false,
   "of": false,

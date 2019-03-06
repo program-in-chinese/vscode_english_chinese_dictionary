@@ -93,10 +93,10 @@ suite("查词测试", () => {
     检查释义("execPath", "执行路径");
 
     检查释义("string_decoder", "字符串_译码器");
-    检查释义("ACCOUNT_NUMBER", "帐户_数字");
-    检查释义("_ACCOUNT_NUMBER", "_帐户_数字");
-    检查释义("account_number_0", "帐户_数字_0");
-    检查释义("account_number0", "帐户_数字0");
+    检查释义("NUMBER_ACCOUNT", "数字_帐户");
+    检查释义("_NUMBER_ACCOUNT", "_数字_帐户");
+    检查释义("number_account_0", "数字_帐户_0");
+    检查释义("number_account0", "数字_帐户0");
 
     // 对于仅有一个单词且有其他字符的命名, 忽略其他字符, 按照单词查询释义
     // 检查释义("account0", "帐户0");
@@ -107,7 +107,7 @@ suite("查词测试", () => {
     检查释义("fsPath", "fs路径");
 
     // 取现在分词原型
-    检查释义("gettingStarted", "获取出发");
+    检查释义("gettingGoods", "获取货物")
 
     // 词性搭配
     // 形容词+名词
@@ -115,13 +115,27 @@ suite("查词测试", () => {
     // 副词+及物动词
     // 检查释义("deepEqual", "深入地等于")
     // 同时有以上两种组合
-    检查释义("firstSteps", "第一的步骤");
+    检查释义("lastSteps", "最后的步骤");
 
     // 忽略常见单词
     检查释义("is_decoder", "为_译码器");
 
     // 获取常用命名
     检查释义("eventListener", "事件监听器");
+
+    // 使用自定义短语释义
+    检查释义("gettingStarted", "启动");
+
+    // 将...替换为后续内容
+    // 检查释义("beforeRedesign", "在...之前重新设计");
+    // 检查释义("afterRedesignMobile", "在...之后重新设计移动的");
+
+    // 优先查询短语
+    检查释义("lastName", "姓");
+    检查释义("firstName", "名");
+    检查释义("ACCOUNT_NUMBER", "帐号");
+    检查释义("firstSteps", "首要步骤");
+
   });
 
   function 检查释义(原词语, 释义) {
