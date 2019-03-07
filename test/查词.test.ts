@@ -127,8 +127,8 @@ suite("查词测试", () => {
     检查释义("gettingStarted", "启动");
 
     // 将...替换为后续内容
-    检查释义("beforeRedesign", "在...之前重新设计");
-    检查释义("afterRedesignMobile", "在...之后重新设计移动的");
+    检查释义("beforeRedesign", "在重新设计之前");
+    检查释义("afterRedesignMobile", "在重新设计移动的之后");
 
     // 优先查询短语
     检查释义("lastName", "姓");
