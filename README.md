@@ -1,5 +1,6 @@
 [![installs](https://vsmarketplacebadge.apphb.com/installs/CodeInChinese.EnglishChineseDictionary.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=CodeInChinese.EnglishChineseDictionary)
 [![version](https://vsmarketplacebadge.apphb.com/version/CodeInChinese.EnglishChineseDictionary.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=CodeInChinese.EnglishChineseDictionary)
+[![中文编程](https://raw.githubusercontent.com/program-in-chinese/overview/master/%E4%B8%AD%E6%96%87%E7%BC%96%E7%A8%8B.svg?style=flat-square)](https://github.com/program-in-chinese/overview)
 
 # 英汉词典使用说明
 
@@ -41,8 +42,8 @@
 
 ### 0.0.11
 
-- 对某些常用命名进行翻译改进, 如"eventListener": "事件收听者" -> "事件监听器"
-- 优先使用直接匹配的短语释义, 如"ACCOUNT_NUMBER"原译为"帐户_数字", 现译为"帐号"
+- 对某些常用命名进行翻译改进, 如"eventListener"原译为"事件收听者", 现译为"事件监听器"
+- 优先使用直接匹配的短语释义, 如"ACCOUNT_NUMBER": "帐户_数字" -> "帐号"
 - 避免某些释义中出现的省略号, 如"beforeRedesign": "在...之前重新设计" -> "在重新设计之前"
 
 ### 0.0.8
