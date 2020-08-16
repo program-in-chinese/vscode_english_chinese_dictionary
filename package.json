@@ -2,7 +2,7 @@
     "name": "EnglishChineseDictionary",
     "displayName": "翻译(英汉词典)",
     "description": "本地77万词条英汉词典，不依赖任何在线翻译API，无查询次数限制。可翻译驼峰和下划线命名，及对整个文件中的标识符批量翻译。Translate a selected identifier, or all the recognized identifiers in one source file.",
-    "version": "0.0.11",
+    "version": "1.0.0",
     "publisher": "CodeInChinese",
     "engines": {
         "vscode": "^1.29.0"
@@ -38,7 +38,7 @@
     },
     "devDependencies": {
         "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
+        "vscode": "1.1.36",
         "eslint": "^4.6.1",
         "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42"
