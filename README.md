@@ -1,6 +1,6 @@
 [![installs](https://vsmarketplacebadge.apphb.com/installs/CodeInChinese.EnglishChineseDictionary.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=CodeInChinese.EnglishChineseDictionary)
 [![version](https://vsmarketplacebadge.apphb.com/version/CodeInChinese.EnglishChineseDictionary.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=CodeInChinese.EnglishChineseDictionary)
-[![中文编程](https://raw.githubusercontent.com/program-in-chinese/overview/master/%E4%B8%AD%E6%96%87%E7%BC%96%E7%A8%8B.png?style=flat-square)](https://github.com/program-in-chinese/overview)
+[![中文编程](https://gitee.com/Program-in-Chinese/overview/raw/master/%E4%B8%AD%E6%96%87%E7%BC%96%E7%A8%8B.png?style=flat-square)](https://github.com/program-in-chinese/overview)
 
 # 英汉词典使用说明
 
