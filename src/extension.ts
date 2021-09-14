@@ -1,5 +1,5 @@
 //const vscode = require('vscode');
-import { workspace, languages, window, commands, ExtensionContext, Disposable, StatusBarAlignment} from 'vscode';
+import { workspace, languages, window, commands, ExtensionContext, Disposable, StatusBarAlignment, TextDocument, Position, Hover} from 'vscode';
 import 内容提供器, { encodeLocation } from './整文件翻译';
 import * as 模型 from './翻译/数据类型'
 import * as 查词 from './查词';
@@ -42,6 +42,27 @@ function activate(context: ExtensionContext) {
     }));
 
     更新状态栏(状态框);
+
+    // 读取配置，是否启用hover显示
+    const 启用悬停配置 = 'EnglishChineseDictionary.enableHover';
+    let 启用悬停 = workspace.getConfiguration().get(启用悬停配置)
+    context.subscriptions.push(workspace.onDidChangeConfiguration((事件) => {
+      if (事件.affectsConfiguration(启用悬停配置)) {
+        启用悬停 = workspace.getConfiguration().get(启用悬停配置)
+      }
+    }))
+    // 注册hover提供器
+    context.subscriptions.push(languages.registerHoverProvider({
+      pattern: '**',
+    }, {
+      provideHover: (文档: TextDocument, 位置: Position) => {
+        if (启用悬停) {
+          const 文本 = 文档.getText(文档.getWordRangeAtPosition(位置)).trim();
+          const 翻译结果 = 显示字段信息(查询词条(文本))
+          return new Hover(翻译结果)
+        }
+      }
+    }))
 }
 
 function 更新状态栏(状态框) {
