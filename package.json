@@ -25,7 +25,18 @@
                 "command": "editor.批量翻译标识符",
                 "title": "批量翻译标识符"
             }
-        ]
+        ],
+        "configuration": {
+          "type": "object",
+          "title": "翻译(英汉词典)配置",
+          "properties": {
+            "EnglishChineseDictionary.enableHover": {
+              "type": "boolean",
+              "default": false,
+              "description": "开启hover悬浮翻译文本"
+            }
+          }
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
