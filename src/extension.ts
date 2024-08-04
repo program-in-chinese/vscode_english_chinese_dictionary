@@ -107,10 +107,10 @@ function 显示字段信息(查字段结果: 模型.字段释义): string {
     if (查字段结果.各词.length == 1) {
         return 取单词条信息(查字段结果.各词[0], true);
     } else {
-        const contentArray = 查字段结果.各词.map(单词结果 => 取单词条信息(单词结果, true, true))
-        const markdownContent = new vscode.MarkdownString();
-        contentArray.forEach(line => markdownContent.appendText(`${line}\n`));
-        return markdownContent
+        const 翻译结果 = 查字段结果.各词.map(单词结果 => 取单词条信息(单词结果, true, false))
+        const 结果模版 = new vscode.MarkdownString();
+        翻译结果.forEach(单词结果 => 结果模版.appendText(`${单词结果}\n`));
+        return 结果模版
     }
 }
 
