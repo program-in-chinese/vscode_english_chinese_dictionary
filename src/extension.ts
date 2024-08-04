@@ -1,4 +1,4 @@
-//const vscode = require('vscode');
+const vscode = require('vscode');
 import { workspace, languages, window, commands, ExtensionContext, Disposable, StatusBarAlignment, TextDocument, Position, Hover} from 'vscode';
 import 内容提供器, { encodeLocation } from './整文件翻译';
 import * as 模型 from './翻译/数据类型'
@@ -107,16 +107,10 @@ function 显示字段信息(查字段结果: 模型.字段释义): string {
     if (查字段结果.各词.length == 1) {
         return 取单词条信息(查字段结果.各词[0], true);
     } else {
-        /**
-         * // TODO: 拼接显示全 查字段结果.释义
-         * // TODO: 分词有问题，可能所以之前保持不换行，‘取单词条信息’
-         let 翻译 = [`【${查字段结果.原字段}】${查字段结果.释义}`]
-         let 翻译2 = 查字段结果.各词.map(单词结果 => 取单词条信息(单词结果, true, false))
-         翻译 = 翻译.concat(翻译2)
-        */
-        return `
-    ${查字段结果.各词.map(单词结果 => 取单词条信息(单词结果, true, false)).join("\n")}
-        `;
+        const contentArray = 查字段结果.各词.map(单词结果 => 取单词条信息(单词结果, true, true))
+        const markdownContent = new vscode.MarkdownString();
+        contentArray.forEach(line => markdownContent.appendText(`${line}\n`));
+        return markdownContent
     }
 }
 
@@ -129,7 +123,6 @@ function 取单词条信息(查词结果: 模型.单词条, 显示原词: boolea
 
     let 词形 = 查词结果.词形;
     if (显示词形 && 词形.length > 0) {
-        // TODO: 需要调整换行格式
         let 词形显示 = "";
         for (let 某词形 of 词形) {
             词形显示 += 某词形.类型 + ": " + 某词形.变化 + "; ";
