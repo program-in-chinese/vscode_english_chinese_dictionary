@@ -1,4 +1,4 @@
-//const vscode = require('vscode');
+const vscode = require('vscode');
 import { workspace, languages, window, commands, ExtensionContext, Disposable, StatusBarAlignment, TextDocument, Position, Hover} from 'vscode';
 import 内容提供器, { encodeLocation } from './整文件翻译';
 import * as 模型 from './翻译/数据类型'
@@ -107,11 +107,10 @@ function 显示字段信息(查字段结果: 模型.字段释义): string {
     if (查字段结果.各词.length == 1) {
         return 取单词条信息(查字段结果.各词[0], true);
     } else {
-        let 翻译 = "";
-        for (let 单词结果 of 查字段结果.各词) {
-            翻译 += 取单词条信息(单词结果, true, false);
-        }
-        return 翻译;
+        const 翻译结果 = 查字段结果.各词.map(单词结果 => 取单词条信息(单词结果, true, false))
+        const 结果模版 = new vscode.MarkdownString();
+        翻译结果.forEach(单词结果 => 结果模版.appendText(`${单词结果}\n`));
+        return 结果模版
     }
 }
 
