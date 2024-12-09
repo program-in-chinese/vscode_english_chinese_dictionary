@@ -36,8 +36,11 @@ function activate(context: ExtensionContext) {
         // TODO: 避免重复查询(状态框查询一次即可?)
         let 文本 = 取选中文本();
         if (文本) {
-            let 显示 = 显示字段信息(查询词条(文本));
-            window.showInformationMessage(显示词条(显示, 1000));
+            let 显示 = 显示字段信息(查询词条(文本)) as unknown as {
+                value:string
+            }
+            显示.value = 显示.value.replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim()
+            window.showInformationMessage(显示词条(显示.value, 1000));
         }
     }));
 
