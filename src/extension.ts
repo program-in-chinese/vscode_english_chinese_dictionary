@@ -39,8 +39,12 @@ function activate(context: ExtensionContext) {
             let 显示 = 显示字段信息(查询词条(文本)) as unknown as {
                 value:string
             }
-            显示.value = 显示.value.replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim()
-            window.showInformationMessage(显示词条(显示.value, 1000));
+            if(typeof 显示 === 'string'){
+                window.showInformationMessage(显示词条(显示, 1000));
+            } else {
+                显示.value = 显示.value.replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim()
+                window.showInformationMessage(显示词条(显示.value, 1000));
+            }
         }
     }));
 
