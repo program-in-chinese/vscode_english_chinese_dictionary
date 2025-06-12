@@ -7,6 +7,8 @@ suite("释义处理测试", () => {
   test("取字段中所有词", () => {
     assert.deepEqual(["test"],
       释义处理.取字段中所有词("test"));
+    assert.deepEqual(["China"],
+      释义处理.取字段中所有词("China"));
     assert.deepEqual(["ACCOUNT"],
       释义处理.取字段中所有词("ACCOUNT"));
 

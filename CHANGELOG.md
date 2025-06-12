@@ -1,5 +1,9 @@
 ## 各版本更新说明
 
+### 1.1.1
+
+[悬浮窗显示翻译](https://github.com/program-in-chinese/vscode_english_chinese_dictionary/pull/46) 并 [各词换行显示](https://github.com/program-in-chinese/vscode_english_chinese_dictionary/pull/69)
+
 ### 0.0.7
 
 中文编程[知乎专栏](https://zhuanlan.zhihu.com/codeInChinese)文章: [VS Code英汉词典插件v0.0.7-尝试词性搭配](https://zhuanlan.zhihu.com/p/51525136)

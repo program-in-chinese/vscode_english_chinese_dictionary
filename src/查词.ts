@@ -24,7 +24,10 @@ export function 取释义(选中文本: string): 模型.字段释义 {
     let 处理后词 = 单词;
 
     if (处理后词 != 单词.toUpperCase()) {
-      处理后词 = 单词.toLowerCase();
+      // 如词汇本身大写开头如 China，则不进行小写转换
+      if (词典.词典数据[处理后词] == undefined) {
+        处理后词 = 单词.toLowerCase();
+      }
     } else {
       // 应付全大写词, 多见于常量, 如SHIPMENT
       if (!词典.词典数据[处理后词]) {
