@@ -1,5 +1,4 @@
-const vscode = require('vscode');
-import { workspace, languages, window, commands, ExtensionContext, Disposable, StatusBarAlignment, TextDocument, Position, Hover} from 'vscode';
+import { workspace, languages, window, commands, ExtensionContext, Disposable, StatusBarAlignment, TextDocument, Position, Hover, MarkdownString} from 'vscode';
 import 内容提供器, { encodeLocation } from './整文件翻译';
 import * as 模型 from './翻译/数据类型'
 import * as 查词 from './查词';
@@ -36,7 +35,7 @@ function activate(context: ExtensionContext) {
         // TODO: 避免重复查询(状态框查询一次即可?)
         let 文本 = 取选中文本();
         if (文本) {
-            let 显示 = 显示字段信息(查询词条(文本));
+            let 显示 = 显示字段文本信息(查询词条(文本));
             window.showInformationMessage(显示词条(显示, 1000));
         }
     }));
@@ -68,9 +67,12 @@ function activate(context: ExtensionContext) {
 function 更新状态栏(状态框) {
     let 文本 = 取选中文本();
     if (文本) {
-        状态框.text = "$(megaphone) " + 显示词条(显示简要信息(查询词条(文本)), 30);
+        let 查字段结果 = 查询词条(文本);
+        状态框.text = "$(megaphone) " + 显示词条(显示简要信息(查字段结果), 30);
+        状态框.tooltip = 显示词条(显示字段文本信息(查字段结果), 1000);
         状态框.show();
     } else {
+        状态框.tooltip = undefined;
         状态框.hide();
     }
 }
@@ -102,15 +104,23 @@ function 显示简要信息(查字段结果: 模型.字段释义): string {
     }
 }
 
-function 显示字段信息(查字段结果: 模型.字段释义): string {
+function 显示字段信息(查字段结果: 模型.字段释义): string | MarkdownString {
     // 长度必大于0
     if (查字段结果.各词.length == 1) {
         return 取单词条信息(查字段结果.各词[0], true);
     } else {
         const 翻译结果 = 查字段结果.各词.map(单词结果 => 取单词条信息(单词结果, true, false))
-        const 结果模版 = new vscode.MarkdownString();
+        const 结果模版 = new MarkdownString();
         翻译结果.forEach(单词结果 => 结果模版.appendText(`${单词结果}\n`));
         return 结果模版
+    }
+}
+
+function 显示字段文本信息(查字段结果: 模型.字段释义): string {
+    if (查字段结果.各词.length == 1) {
+        return 取单词条信息(查字段结果.各词[0], true);
+    } else {
+        return 查字段结果.各词.map(单词结果 => 取单词条信息(单词结果, true, false)).join("\n");
     }
 }
 
