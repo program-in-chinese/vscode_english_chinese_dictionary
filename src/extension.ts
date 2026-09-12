@@ -1,5 +1,4 @@
-const vscode = require('vscode');
-import { workspace, languages, window, commands, ExtensionContext, Disposable, StatusBarAlignment, TextDocument, Position, Hover} from 'vscode';
+import { workspace, languages, window, commands, ExtensionContext, Disposable, StatusBarAlignment, TextDocument, Position, Hover, MarkdownString} from 'vscode';
 import 内容提供器, { encodeLocation } from './整文件翻译';
 import * as 模型 from './翻译/数据类型'
 import * as 查词 from './查词';
@@ -59,7 +58,7 @@ function activate(context: ExtensionContext) {
         if (启用悬停) {
           const 文本 = 文档.getText(文档.getWordRangeAtPosition(位置)).trim();
           const 翻译结果 = 显示字段信息(查询词条(文本))
-          return new Hover(翻译结果)
+          return new Hover(new MarkdownString().appendText(翻译结果))
         }
       }
     }))
@@ -87,7 +86,7 @@ function 查询词条(英文: string): 模型.字段释义 {
     return 查词.取释义(英文);
 }
 
-function 显示词条(显示, 最大长度: number): string {
+function 显示词条(显示: string, 最大长度: number): string {
     return 显示.length > 最大长度 ? 显示.substring(0, 最大长度 - 1) + "..." : 显示;
 }
 
@@ -107,10 +106,7 @@ function 显示字段信息(查字段结果: 模型.字段释义): string {
     if (查字段结果.各词.length == 1) {
         return 取单词条信息(查字段结果.各词[0], true);
     } else {
-        const 翻译结果 = 查字段结果.各词.map(单词结果 => 取单词条信息(单词结果, true, false))
-        const 结果模版 = new vscode.MarkdownString();
-        翻译结果.forEach(单词结果 => 结果模版.appendText(`${单词结果}\n`));
-        return 结果模版
+        return 查字段结果.各词.map(单词结果 => 取单词条信息(单词结果, true, false)).join("\n");
     }
 }
 
